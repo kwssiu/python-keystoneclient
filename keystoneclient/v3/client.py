@@ -24,7 +24,12 @@ from keystoneclient.v3 import projects
 from keystoneclient.v3 import roles
 from keystoneclient.v3 import services
 from keystoneclient.v3 import users
-
+from keystoneclient.v3 import ossets
+from keystoneclient.v3 import orgsets
+from keystoneclient.v3 import orgatts
+from keystoneclient.v3 import orgassocs
+from keystoneclient.v3 import osassocs
+from keystoneclient.v3 import mappings
 
 _logger = logging.getLogger(__name__)
 
@@ -73,6 +78,12 @@ class Client(client.Client):
         self.roles = roles.RoleManager(self)
         self.services = services.ServiceManager(self)
         self.users = users.UserManager(self)
+        self.ossets = ossets.OsAttributeSetManager(self)
+        self.orgsets = orgsets.OrgAttributeSetManager(self)
+        self.orgatts = orgatts.OrgAttributeManager(self)
+        self.orgassocs = orgassocs.OrgAttributeAssociationManager(self)
+        self.osassocs = osassocs.OsAttributeAssociationManager(self)
+        self.mappings = mappings.MappingManager(self)
 
         # NOTE(gabriel): If we have a pre-defined endpoint then we can
         #                get away with lazy auth. Otherwise auth immediately.
